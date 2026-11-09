@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mall Parking Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">SMART OPERATIONS</p>
+      <h1>Parking Management</h1>
+      <p class="subtitle">Vehicle entry, slot allocation and parking sessions</p>
+    </div>
+    <div class="live"><span class="dot"></span> System dashboard</div>
+  </header>
+
+  <main>
+    <section class="stats">
+      <article class="stat"><span>Total slots</span><strong id="totalSlots">—</strong></article>
+      <article class="stat"><span>Available slots</span><strong id="availableSlots">—</strong></article>
+      <article class="stat"><span>Occupied slots</span><strong id="occupiedSlots">—</strong></article>
+      <article class="stat"><span>Active sessions</span><strong id="activeSessions">—</strong></article>
+    </section>
+
+    <section class="grid two">
+
+      <!-- Vehicle Entry -->
+      <article class="panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">GATE OPERATIONS</p>
+            <h2>Vehicle entry</h2>
+          </div>
+          <span class="tag green">Entry</span>
+        </div>
+
+        <form id="entryForm">
+          <label>
+            Vehicle number
+            <input id="vehicleNumber" placeholder="TS09AB1234" required>
+          </label>
+
+          <label>
+            Vehicle type
+            <select id="vehicleType">
+              <option value="CAR">Car</option>
+              <option value="BIKE">Two-wheeler</option>
+            </select>
+          </label>
+
+          <label>
+            Parking Location
+            <select id="parkingLotId" required>
+              <option value="">Select Parking Area</option>
+              <option value="1">Basement B1 - East Wing</option>
+              <option value="2">Basement B2 - West Wing</option>
+              <option value="3">Ground Floor - Main Entrance</option>
+              <option value="4">First Floor - Near Food Court</option>
+              <option value="5">Second Floor - Near Cinema</option>
+            </select>
+          </label>
+
+          <label>
+            Owner name
+            <input id="ownerName" placeholder="Optional">
+          </label>
+
+          <button type="submit">
+            Register vehicle & allocate slot
+          </button>
+        </form>
+
+        <p class="hint">
+          The allocation is asynchronous. A ticket is created first;
+          refresh its status below after a moment.
+        </p>
+      </article>
+
+      <!-- Vehicle Exit -->
+      <article class="panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">GATE OPERATIONS</p>
+            <h2>Vehicle exit</h2>
+          </div>
+          <span class="tag orange">Exit</span>
+        </div>
+
+        <form id="exitForm">
+          <label>
+            Parking ticket number
+            <input id="exitTicket"
+                   placeholder="MALL-XXXXXXXX"
+                   required>
+          </label>
+
+          <button class="secondary" type="submit">
+            Record vehicle exit
+          </button>
+        </form>
+
+        <p class="hint">
+          No payment is collected or calculated in this project.
+          Exit completes the session and releases the slot.
+        </p>
+
+      </article>
+
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div><p class="eyebrow">TICKET TRACKING</p><h2>Find a parking ticket</h2></div>
+        <button class="small secondary" id="refreshAll" type="button">Refresh dashboard</button>
+      </div>
+      <form id="ticketForm" class="inline-form">
+        <input id="ticketNumber" placeholder="Enter ticket number" required>
+        <button type="submit">Find ticket</button>
+      </form>
+      <div id="ticketResult" class="result empty">No ticket searched yet.</div>
+    </section>
+
+    <section class="grid two">
+      <article class="panel">
+        <div class="panel-head"><div><p class="eyebrow">PARKING SERVICE</p><h2>Parking slots</h2></div></div>
+        <div class="table-wrap"><table><thead><tr><th>Slot</th><th>Type</th><th>Status</th></tr></thead><tbody id="slotRows"><tr><td colspan="3">Loading...</td></tr></tbody></table></div>
+      </article>
+      <article class="panel">
+        <div class="panel-head"><div><p class="eyebrow">SESSION SERVICE</p><h2>Parking sessions</h2></div></div>
+        <div class="table-wrap"><table><thead><tr><th>Ticket</th><th>Vehicle</th><th>Slot</th><th>Status</th></tr></thead><tbody id="sessionRows"><tr><td colspan="4">Loading...</td></tr></tbody></table></div>
+      </article>
+    </section>
+    <p id="message" class="message" role="status"></p>
+  </main>
+  <footer>Educational microservices demo · Spring Boot · PostgreSQL · RabbitMQ</footer>
+  <script src="app.js"></script>
+</body>
+</html>
