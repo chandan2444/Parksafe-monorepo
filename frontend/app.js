@@ -1,4 +1,8 @@
-const API = { parking: "http://10.93.129.48:8181", entry: "http://localhost:8080", session: "http://10.93.129.24:8282" };
+const API = { 
+  parking: "http://32.236.119.7:8081", 
+  entry: "http://32.236.119.7:8082", 
+  session: "http://32.236.119.7:8080" 
+};
 const $ = id => document.getElementById(id);
 const message = (text, error=false) => { $("message").textContent = text; $("message").style.color = error ? "#b42318" : "#245da8"; };
 async function request(url, options={}) {
